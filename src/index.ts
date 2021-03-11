@@ -5,6 +5,7 @@ import { createServer } from 'http'
 
 // 생성한 슬랙앱에 대한 키값들
 import CONFIG from '../config/bot.json'
+import { getWeather } from './weather'
 /* 
   {
     "SIGNING_SECRET": "XXXX",
@@ -28,6 +29,10 @@ slackEvents.on('message', async event => {
             channel: event.channel
         })
     }
+    if (event.text === '날씨') {
+    }
+    const todayWeather = await getWeather()
+    console.log('todayWeather: ', todayWeather?.data)
 })
 
 // 메지지 이벤트 엔드포인트를 express 에 등록하기
